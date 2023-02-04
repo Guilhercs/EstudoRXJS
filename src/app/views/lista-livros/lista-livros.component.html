@@ -3,9 +3,11 @@
   <div class="busca">
     <input
       type="search"
+      [(ngModel)]="search"
+      (keyup.Enter)="getBooks()"
     >
-    <button>
-      <img src="assets/imagens/icone-busca.png" alt="Lupa de cor roxa">
+    <button (click)="getBooks()">
+      <img src="assets/imagens/icone-busca.png" aria-label="buscar">
     </button>
   </div>
   <p>Busque por assunto, autoria, nome...</p>
