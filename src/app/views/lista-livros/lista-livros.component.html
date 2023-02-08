@@ -3,15 +3,17 @@
   <div class="busca">
     <input
       type="search"
-      [(ngModel)]="search"
-      (keyup.Enter)="getBooks()"
+      [formControl]="search"
     >
-    <button (click)="getBooks()">
+    <button>
       <img src="assets/imagens/icone-busca.png" aria-label="buscar">
     </button>
   </div>
   <p>Busque por assunto, autoria, nome...</p>
-<div class="container-card" *ngIf="listaLivros?.length > 0, else telaInicial">
+  <div class="resultados mensagem-erro" *ngIf="msgError">
+    {{msgError}}
+  </div>
+<div class="container-card" *ngIf="livrosEncontrados$ | async as listaLivros, else telaInicial">
   <div *ngFor="let livro of listaLivros">
     <app-livro [livro]="livro"></app-livro>
   </div>
